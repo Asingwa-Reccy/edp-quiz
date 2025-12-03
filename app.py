@@ -28,3 +28,14 @@ def save_result(student_name, student_email, quiz_id, percent, raw_answers):
                 (student_name, student_email, quiz_id, percent, str(raw_answers)))
     con.commit()
     con.close()
+from pydantic import BaseModel
+from typing import List, Dict
+
+class QuizAnswer(BaseModel):
+    question_id: str
+    answer: str
+
+class QuizSubmission(BaseModel):
+    student_name: str
+    student_email: str
+    answers: List[QuizAnswer]
